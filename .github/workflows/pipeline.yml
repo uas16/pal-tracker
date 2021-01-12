@@ -2,7 +2,7 @@ name: Pal Tracker Pipeline
 
 on:
   push:
-    branches: [main]
+    branches: [master]
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
