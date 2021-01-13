@@ -9,7 +9,7 @@ import java.util.List;
 @RestController
 public class TimeEntryController {
 
-    private TimeEntryRepository timeEntryRepository;
+    private final TimeEntryRepository timeEntryRepository;
 
     public TimeEntryController(TimeEntryRepository timeEntryRepository) {
         this.timeEntryRepository = timeEntryRepository;
