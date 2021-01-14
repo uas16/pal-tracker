@@ -26,6 +26,7 @@ dependencies {
             }
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'mysql:mysql-connector-java'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 }
 
 test {
@@ -36,10 +37,15 @@ test {
 bootRun.environment([
         "WELCOME_MESSAGE": "hello egfyegfre",
         "SPRING_DATASOURCE_URL": developmentDbUrl,
+        "MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE": "*",
+        "MANAGEMENT_ENDPOINT_HEALTH_SHOWDETAILS": "always",
 ])
 test.environment([
         "WELCOME_MESSAGE": "Hello from test",
-        "SPRING_DATASOURCE_URL": testDbUrl,])
+        "SPRING_DATASOURCE_URL": testDbUrl,
+        "MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE": "*",
+        "MANAGEMENT_ENDPOINT_HEALTH_SHOWDETAILS": "always",
+])
 flyway {
     url = developmentDbUrl
     user = "tracker"
@@ -48,4 +54,7 @@ flyway {
 }
 task testMigrate(type: FlywayMigrateTask) {
     url = testDbUrl
+}
+springBoot {
+    buildInfo()
 }
